@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Enigma 3</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <style>
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="alphabet">
+            <p><strong>Alphabet</strong></p>
+            <p>QWERTZUIO</p>
+            <p>ASDFGHJK</p>
+            <p>PYXCVBNML</p>
+        </div>
+        <div class="keyboard">
+            <h2>Tastatur</h2>
+            <div>
+                <button value="q">Q<br />1</button> <button value="w">W<br />2</button>
+                <button value="e">E<br />3</button> <button value="r">R<br />4</button>
+                <button value="t">T<br />5</button> <button value="z">Z<br />6</button>
+                <button value="u">U<br />7</button> <button value="i">I<br />8</button>
+                <button value="o">O<br />9</button>
+            </div>
+            <div>
+                <button value="a">A</button> <button value="s">S</button>
+                <button value="d">D</button> <button value="f">F</button>
+                <button value="g">G</button> <button value="h">H</button>
+                <button value="j">J</button> <button value="k">K</button>
+            </div>
+            <div>
+                <button value="p">P<br />10</button> <button value="y">Y</button>
+                <button value="x">X</button> <button value="c">C</button>
+                <button value="v">V</button> <button value="b">B</button>
+                <button value="n">N</button> <button value="m">M</button>
+                <button value="l">L</button>
+            </div>
+        </div>
+        <div class="dataoperator">
+
+            <div>
+                <h2>Dateneingabe</h2>
+                <button class="reset-button">ZURÜCKSTELLEN</button>
+                <button class="send-button">SENDEN</button>
+                <button class="delete-button">ALLES LÖSCHEN</button>
+                <div class="typein">FERNSCHREIBER<span></span></div>
+            </div>
+
+            <div>
+                <h2>Einfache Transposition</h2>
+                <div class="sendin">KLARTEXT<span></span></div>
+                <form action="">
+                    <input type="number" min="0" max="26" pattern="([0-2]|[0-9])" class="factor" value="13">
+                </form>
+                <button class="cipher-button">VERSCHLÜSSELN</button>
+                <div class="cipher">CHIFFRE<span></span></div>
+            </div>
+    </main>
+    <script> </script>
+    <!-- <script src="enigma-input.js"></script>
+    <script src="enigma-output.js"></script>
+    <script src="enigma-cipher.js"></script> -->
+    <script src="enigma.js"></script>
+</body>
+
+</html>
