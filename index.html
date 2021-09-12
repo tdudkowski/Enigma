@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma</title>
+    <script src="index.js" defer></script>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+
+        p,
+        div,
+        h4 {
+            max-width: 100vw;
+            max-width: 100%;
+            word-break: break-word;
+        }
+
+        div.section {
+            border: 1px solid #999;
+            border-radius: 6px;
+            padding: .5rem;
+            margin: .5rem;
+        }
+
+        textarea {
+            width: 80%;
+            max-width: 62rem;
+            min-width: 250px;
+        }
+
+        #formRotors,
+        #output,
+        .settingsPanel,
+        .formInput {
+            max-width: 58rem;
+            background-color: beige;
+            position: relative;
+        }
+
+        #steckerbrett {
+            width: 90%;
+            min-width: 210px;
+        }
+
+        #formRotors h4 {
+            width: max-content;
+            padding: 0 .5rem;
+            margin: 1rem 0 -1rem 1rem;
+            background-color: beige;
+            z-index: 10;
+            position: relative;
+            width: max-content;
+        }
+
+        select {
+            width: 11rem;
+            font-size: 1.2rem;
+        }
+
+        p,
+        h3,
+        h2,
+        button {
+            margin: .5rem;
+            padding-top: .5rem;
+        }
+
+        button {
+            width: 15rem;
+            font-size: 1.2rem;
+        }
+
+        .setting-field {
+            border: 1px solid #aa9;
+            border-radius: 4px;
+            padding: .5rem;
+            margin: .5rem;
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+        }
+
+        .setting-field label {
+            margin: .5rem;
+        }
+
+        table td {
+            border: 1px solid #aaa;
+            padding: 2px .3rem;
+            background-color: #ffe;
+        }
+
+        .deck {
+            margin: .5rem;
+            padding: .5rem;
+            display: inline-block;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* font-weight: bold; */
+            background-color: #fff;
+        }
+
+        .deck ul {
+            list-style-type: circle;
+        }
+
+        @media(min-width: 900px) {
+
+            h1,
+            div.section {
+                max-width: 60rem;
+                margin: 1rem auto;
+            }
+
+            .setting-field {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Enigma I (1930-45)</h1>
+    <div class="section">
+        <h2>Zur Beachtung!</h2>
+
+        <h3>Beachte die Gebrauchsanleitung für die Chiffriermaschine</h3>
+
+        <p>Rekonstrukcja niemieckiej maszyny szyfrującej Enigma I (podstawowa maszyna szyfrująca armii niemieckiej w
+            latach 1930-45). Rekonstrukcja składa się z trzech części:</p>
+
+        <ul>
+            <li>Instrukcji (niem. Zur Beachtung!), którą teraz czytasz</li>
+            <li>Wejścia danych (niem. Dateneingabe) z panelem ustawień - pośrodku</li>
+            <li>Wyjścia danych (niem. Datenausgabe) - na dole strony</li>
+        </ul>
+
+        <h3>Ustawienia (niem. Einstellungen)</h3>
+
+        <p>Unikalnym kluczem szyfru były sprzętowe ustawienia maszyny wprowadzane w trzech miejscach. Możesz wprowadzić
+            dowolne ustawienia zgodne z możliwościami.</p>
+        <ul>
+            <li><strong>kolejność walców:</strong> trzy sloty, masz pięć dostępnych typów walców, każdy tylko w jednym
+                egzemplarzu - wybierz dowolne trzy walce z pięciu dostępnych w menu rozwijanym, żaden z walców nie może
+                się powtarzać; jeśli będą się powtarzać wrócisz do ustawień domyślnych.</li>
+            <li><strong>ustawienia początkowe walców:</strong> każdy z walców niezależnie można było ustawić w pozycji
+                startowej na dowolną z 26 liter - wybierz dowolne litery z menu rozwijanego.</li>
+            <li><strong>łącznica kablowa:</strong> łączyła gniazda oznaczone literami, przewód z wtykami łączący np. A z
+                B zamieniał każde wystąpienie litery A na B i na odwrót; każda litera mogła być użyta tylko raz i była
+                to relacja zwrotna - wpisz pary liter w dowolnym, dogodnym formacie, skrypt wybierze z ciągu
+                niepowtarzające się litery i połączy je w pary wg kolejności występowania, wszystkie inne znaki zostaną
+                odrzucone.</li>
+        </ul>
+
+        <h3>Używanie</h3>
+
+        <p>Ustawienia można wprowadzać wybiórczo, np. tylko kolejność walców, lub tylko łącznica kablowa, lub tylko
+            łącznica kablowa i ustawienia początkowe walców..., a w reszcie zdać się na ustawienia domyślne.</p>
+
+        <p>Jeżeli nie wprowadzisz własnych zostaną zastosowane domyślne: walce [I, II, III]; ustawienia początkowe
+            walców: A, A, A; łącznica kablowa: brak połączeń</p>
+
+        <p>Jeżeli wprowadziłeś ustawienia kliknij [Einstellen] - twoje ustawienia zobaczysz na panelu ustawień
+            Einstellungen, będzie tam informacja, że zostały zmienione. Sprawdź czy są zgodne z zaplanowanym kluczem,
+            jeśli nie wprowadź je jeszcze raz i jeszcze raz kliknij [Einstellen].</p>
+
+        <p>Wtedy możesz zaszyfrować / odszyfrować tekst wg wprowadzonych ustawień. Zapisz ustawienia i prześlij je
+            odbiorcy oddzielnym kanałem.</p>
+
+        <p>Tekst przeznaczony do zaszyfrowania / odszyfrowania umieść w formularzu i kliknij [Verschlüsseln]. Praca
+            Enigmy jest odwracalna, tzn. szyfrogram zaszyfrowany z tymi samymi ustawieniami daje tekst jawny. Jeżeli
+            wyślesz odbiorcy szyfrogram to mając informację o kluczu otrzyma tekst jawny.</p>
+
+        <h3>Testowanie</h3>
+
+        <p>Do testów proponuję użyć symulatora <a href="https://cryptii.com/pipes/enigma-machine">The Enigma machine:
+                Encrypt and decrypt online — Cryptii</a> po lewej tekst jawny, pośrodku ustawienia, szyfrogram po
+            prawej.</p>
+
+        <ul>
+            <li>Jako maszynę (MODEL) wybieramy - oczywiście - Enigmę I.</li>
+            <li>REFLECTOR to walec odbijający.</li>
+            <li>Pamiętaj, że ma odwrotne oznaczenie rotorów: ten który u mnie jest pierwszy, albo pierwszy z prawej
+                w Cryptii jest oznaczony jako ROTOR 3 i jest na dole. Tak samo ich ROTOR 1, pierwszy od góry to u mnie
+                trzeci, albo pierwszy z lewej.</li>
+            <li>Pozycja startowa walców w Cryptii oznaczona jest jako POSITION i tu kierujemy się literami alfabetu.
+            </li>
+            <li>Trzeci element formularza (RING) odnosi się do ustawienia pierścienia alfabetycznego na walcu i z tego
+                co wiem nie jest częścią szyfrowania Enigmy: tu zostawiamy AAA.</li>
+            <li>Na dole formularza jest pole tekstowe PLUGBOARD - to łącznica kablowa i tu parami wpisujemy połączenia
+                liter.</li>
+            <li>Ostatni element FOREIGN CHARS można zignorować.</li>
+        </ul>
+
+        <p>W kryptografii używamy DUŻYCH LITER.</p>
+
+        <p>Testowanie polega na umieszczeniu długiego (ok tysiąca znaków wystarczy) ciągu tych samych liter po lewej,
+            wprowadzeniu ustawień i skopiowaniu szyfrogramu. Teraz wprowadzamy te same ustawienia w tym symulatorze,
+            wklejamy szyfrogram i w rezultacie powinniśmy otrzymać tekst jawny czyli wspomniany ciąg jednakowych liter.
+        </p>
+
+        <p>Jeżeli rezultat się różni sprawdź jeszcze raz: typowe błędy to pomyłka przy wprowadzaniu ustawień, lub
+            skopiowanie szyfrogramu bez początkowych znaków. Jeżeli rezultat nadal się różni - zapisz ustawienia i daj
+            mi znać, przez facebooka <a href="https://www.facebook.com/dygresje.info">Dygresje.info</a> lub <a
+                href="https://dygresje.info/kontakt">formularz kontaktowy na stronie</a>.</p>
+
+        <p>Do obserwacji wewnętrznej operacji maszyny polecam <a
+                href="https://summersidemakerspace.ca/projects/enigma-machine/">Universal Enigma Machine Simulator</a> -
+            po wprowadzeniu ustawień możemy obserwować szyfrowanie pojedynczych znaków klikając [Cipher One Letter]
+            litera po literze.</p>
+
+        <h3>Dozwolone znaki</h3>
+
+        <ul>
+            <li>Enigma I jest ograniczona do 26-literowego alfabetu zgodnego ze standardem ASCII.</li>
+            <li>Ponieważ ten symulator przeznaczony jest dla polskiego użytkownika, dodałem translację polskich znaków
+                diakrytycznych na standard ASCII.</li>
+            <li>Również cyfry są przekładane na odpowiadające im litery. Przy odszyfrowaniu nie da się automatycznie
+                określić, który znak to cyfra. Jest to zadanie operatora, oto lista odpowiedników:
+                <table>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>Q</td>
+                        <td>W</td>
+                        <td>E</td>
+                        <td>R</td>
+                        <td>T</td>
+                        <td>Z</td>
+                        <td>U</td>
+                        <td>I</td>
+                        <td>O</td>
+                        <td>P</td>
+                    </tr>
+                </table>
+            </li>
+            <li>Wszystkie inne znaki, w tym spacje i znaki przestankowe są usuwane.</li>
+        </ul>
+
+        <p>Pamiętaj, że wróg podsłuchuje!</p>
+
+        <h3>Odnośniki</h3>
+
+        <ul>
+            <li>Oryginalny tekst instrukcji: <a
+                    href="https://wolfgang-naeser-marburg.lima-city.de/htm/enigma.htm">Textsorte:
+                    Bedienungsanleitung</a></li>
+        </ul>
+
+        <p>Na mojej stronie:</p>
+
+        <ul>
+            <li><a href="https://dygresje.info/blog/enigma">Das ist Enigma</a> - seria wpisów o Enigmie</li>
+            <li><a href="https://dygresje.info/it/kryptologia">Kryptologia</a> - dział o kryptologii</li>
+        </ul>
+
+        <p></p>
+    </div>
+    <div class="section">
+        <h2>Dateneingabe</h2>
+        <div class="settingsPanel">
+            <h3>Einstellungen (Ustawienia)</h3>
+
+            <div class="deck">
+                <p id="info">Aktualne ustawienia: domyślne</p>
+                <ul>
+                    <li>Kolejność walców: <span id="settings-rotorsSequence">I, II, III</span></li>
+                    <li>Walec odwracający: <span id="settings-mirrorRotor">UKW A</span></li>
+                    <li>Ustawienia początkowe walców: <span id="settings-rotorsStart">A, A, A</span></li>
+                    <li>łącznica kablowa: <span id="settings-steckerbrett">brak</span></li>
+                </ul>
+            </div>
+
+            <p>Kolejne walce są umieszczone od prawej do lewej, w poniższym formularzu ustawienia wprowadzasz jak w
+                prawdziwej maszynie. Nie pomyl kolejności, pamiętaj, że pierwszy jest po prawej, a trzeci po lewej!</p>
+
+            <p>Przed każdym wprowadzeniem ustawień lub zaszyfrowaniem z ustawieniami domyślnymi - przeładuj stronę. To
+                wstępna wersja kodu i niestety ciągle zachowuje stan rotorów. Reload zeruje je.</p>
+        </div>
+        <div>
+            <form id="formRotors" method="post">
+                <h4>Walzensatz (Zespoł walców)</h4>
+                <section class="setting-field">
+                    <label for="mirrorRotor">Umkehrwalze<br />
+                        <select name="mirrorRotor" id="mirrorRotor">
+                            <option value="UKW_A">UKW A</option>
+                            <option value="UKW_B">UKW B</option>
+                            <option value="UKW_C">UKW C</option>
+                        </select></label>
+                    <label for="thirdRotor">Dritter Rotor (langsam)<br />
+                        <select name="thirdRotor" id="thirdRotor">
+                            <option value="I">I</option>
+                            <option value="II">II</option>
+                            <option value="III" selected="selected">III</option>
+                            <option value="IV">IV</option>
+                            <option value="V">V</option>
+                        </select>
+                    </label>
+                    <label for="secondRotor">Zweiter Rotor<br />
+                        <select name="secondRotor" id="secondRotor">
+                            <option value="I">I</option>
+                            <option value="II" selected="selected">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                            <option value="V">V</option>
+                        </select>
+                    </label>
+                    <label for="firstRotor">Erste Rotor (schnell)<br />
+                        <select name="firstRotor" id="firstRotor">
+                            <option value="I" selected="selected">I</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                            <option value="V">V</option>
+                        </select>
+                    </label>
+                </section>
+                <h4>Buchstabeneinstellungen (Ustawienia&nbsp;walców)</h4>
+                <section class="setting-field">
+                    <label for="thirdRotorStart">Dritter Rotor (langsam)<br />
+                        <select name="thirdRotorStart" id="thirdRotorStart">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                            <option value="I">I</option>
+                            <option value="J">J</option>
+                            <option value="K">K</option>
+                            <option value="L">L</option>
+                            <option value="M">M</option>
+                            <option value="N">N</option>
+                            <option value="O">O</option>
+                            <option value="P">P</option>
+                            <option value="Q">Q</option>
+                            <option value="R">R</option>
+                            <option value="S">S</option>
+                            <option value="T">T</option>
+                            <option value="U">U</option>
+                            <option value="V">V</option>
+                            <option value="W">W</option>
+                            <option value="X">X</option>
+                            <option value="Y">Y</option>
+                            <option value="Z">Z</option>
+                        </select>
+                    </label>
+                    <label for="secondRotorStart">Zweiter Rotor<br />
+                        <select name="secondRotorStart" id="secondRotorStart">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                            <option value="I">I</option>
+                            <option value="J">J</option>
+                            <option value="K">K</option>
+                            <option value="L">L</option>
+                            <option value="M">M</option>
+                            <option value="N">N</option>
+                            <option value="O">O</option>
+                            <option value="P">P</option>
+                            <option value="Q">Q</option>
+                            <option value="R">R</option>
+                            <option value="S">S</option>
+                            <option value="T">T</option>
+                            <option value="U">U</option>
+                            <option value="V">V</option>
+                            <option value="W">W</option>
+                            <option value="X">X</option>
+                            <option value="Y">Y</option>
+                            <option value="Z">Z</option>
+                        </select>
+                    </label>
+                    <label for="firstRotorStart">Erste Rotor (schnell)<br />
+                        <select name="firstRotorStart" id="firstRotorStart">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                            <option value="I">I</option>
+                            <option value="J">J</option>
+                            <option value="K">K</option>
+                            <option value="L">L</option>
+                            <option value="M">M</option>
+                            <option value="N">N</option>
+                            <option value="O">O</option>
+                            <option value="P">P</option>
+                            <option value="Q">Q</option>
+                            <option value="R">R</option>
+                            <option value="S">S</option>
+                            <option value="T">T</option>
+                            <option value="U">U</option>
+                            <option value="V">V</option>
+                            <option value="W">W</option>
+                            <option value="X">X</option>
+                            <option value="Y">Y</option>
+                            <option value="Z">Z</option>
+                        </select>
+                    </label>
+                </section>
+                <h4>Steckerbrett (Łącznica kablowa)</h4>
+                <section class="setting-field">
+                    <input id="steckerbrett">
+                </section>
+                <button id="buttonSettings">Einstellen</button>
+            </form>
+        </div>
+        <div>
+            <form class="formInput">
+                <h3>Formular</h3>
+                <textarea id="input" cols="50" rows="10"></textarea><br />
+                <button id="button">Verschlüsseln</button>
+            </form>
+        </div>
+    </div>
+    <div class="section">
+        <h2>Datenausgabe</h2>
+        <div>Liczba znaków: <span id="counter">0</span></div>
+        <div id="output">_</div>
+    </div>
+    <hr />
+    <!-- <pre>
+        I   "EKMFLGDQVZNTOWYHXUSPAIBRCJ" "Q"
+        II  "AJDKSIRUXBLHWTMCQGZNPYFVOE" "E"
+        III "BDFHJLCPRTXVZNYEIWGAKMUSQO" "V"
+        IV  "ESOVPZJAYQUIRHXLNFTGKDCMWB" "J"
+        V   "VZBRGITYUPSDNHLXAWMJQOFECK" "Z"
+        </pre>
+    <h4>312</h4>
+    <p>CVLDYWIYVVUBXLDJPUKQZOBRHOUGVVFTUVQPNMHVIBJYUWIJJBLUBHZIJNLJLYKXZTYCEIZBTIWJKEHIELQSMWTGSIKGPNRJTXSJKLLEJLNMKKDWVFUGXLYPUUKMEMOBEBRZQODGKVNFGGJYVCSMQBJVJOEXUMFIMYKDDZPZSBVSEZUVFTBVQSIFHFNBVHJDFVNRHHBFBPLOPSZOQYFRBBOHRYQXQEDDVZZIZNXFFPKMMBXYELFSIRWNXWXBVYXTSXZWCEDJYVVFNJGULYDZCCGJZGUEGCZSQYMSNKTFSGUGLUGJMTFBZBGEPPNMMJBWZBYYNDLCUFSBFDRTSLBXZTGNPBPNMKIXGJLSIZEBUSVBRZCOUJYRRKQJGEEDSXUOEWIMKCYCQYJBWHULTNYHPRGVYYXKNGPQHKNMQSJKTQSPDGKKUNTXVUGVQYILTFQTUSGUHTNQHHBFTRRHVEMCZJDYDFPTDNPKUBQUGDMVCRSZIJMMDECYEUYXXWBINEYBGKOYDPJWCBLZYLSIIMDFEMOMFGHEBHHDWPSOMNLTUJPCMOHXRVNIIFELEPJUTSVTOENMLPKMITOMLSJINWZPJYONJHEOLBUYTXQHOMZWZRYMOBZJEPNMVPWDWZCZYKDCUQJBZUFYPKRLHOGIZJPRMQCXKFSIIZQURDDLPHGNRCMJJUFTQRWVNISUTEHZCDNLUCSTUIXOELEPUEQQDLKPBSDFWDCWRLYXRHQCQEWDIUKEPEHGMZKKCCXFYVKRVQWOQKQRLGHSRMQLLFHFCBEHYDXVBIHRBBFTIQIVVUIRVBGRRQLPKMFTEHXVVZBBXOSXGQPLKJQPOSLRKWGSRELGIPMUVUGFSGXUFNLDKVWTEYDEFFIGSHHKUGYKDGDKHWJDVZILOMGMJRUIVNHKILCBMHYVXBKIEGRDJXOPCUMUVLSUQFFNLTKSQTQYKYTWDYBPJWCBGZYWWPOYLXYWOMFGZUXBFDZKEFYNUJZRWDCVVKDVNDCPZMOHNKKORHLQCGXWEDTPSLZHRHYPZQVVCFNMYSHJTDSVPGEIUICFGYBRFMZQPHFCSJFTISUNXBZIHDYDETIWZBRZOGCJKUVTUONJFIRKHZBCMIMUHRKFOPOTLSNWQTVFWDWBJVPJIFQIHJRQCDZVNFKHEFBILQDOFXNRLBXBEHFBIYWNXSXBVTMGXDMTKSTNDFNKNSGRMYQVNUKTRBRMELEENMJJKEWJCULKVRUDJJUJCXLEUYJKDOPWXNEKHPYZOCLGDSDOKXLFLGDTUJDDPVJBPSDIQVBULIZTUSIPEZNZXJEUMPDGWWNJZMODWUONENTGLGLCKOCTRVNPUHQECOEXTEOCCWKMYEXHLIVSQKJFDIFGCBVZUJMVZFDGPIQBUKCQJVFBJBRZYXBIZJHCVLUNXLZCERCBGEWFMYUIQCCFSLYHXCIIQWQDHREZRQVLRXFOKBHHIMDFPMEISZFDGGCOQXUWVFCNCKYPXMJIHSBTQODSKLUHLXTGQVWJSURTYCJPDITIRNSSPGFHNMJNPBRNQKZEKDUYGWTYJIFVPMIIKYHSFJIUBNXGEGSJGPPEQZQDKFSNIXEOWLFJHUBRMIIKRWTLWLFSWNWDJZFZYRCQMZXSPPZYYYBTZRUIORMKOJGUBFVXWRMPCUBSXBYZNRFJXJEUVPTY<br />
+        [III, I, II] 1660</p>
+    <h4>132</h4>
+    <p>KYHCPWCIDVCBQTZDNCGDHXXRNZCVLPBWXBUQTDKSXGQBQNYGEPVOSEPYOZBQDPHKJFFYCSPDJLBMWTDCGEGWQGELQJDCHZEUSHEXQDVCIEFYORWFKMHORFIYHEQNYVEVOXVHLNMBIQYYPDXQXPMJKFDGZUQRBZKTTJLLDEXRBZEQLDHLVPRXHBRDECEYHTQTYXNEGDJUSGTLBZELFTZHDLSWSGUWGDQNNMIGWUXHEVWTQFWUJHJQICTDLOXXHMSVSWMYOLMLNDDRNNFVYHOVTJUYZDIKCQHIIFFVPCVVRMCVEOJILDTYGIRDQSLOVWNWIGSDSOPKUCVZRWFDGCWXCIBKJOJSTHTURECWJXPLBXHBJDRZXPEMHLJNWEJHWIYCQNPNYITPPXRHYXWJCKPRUXWRLJGNZURRFSZWGQSIPJNWGOPRKCFTPJLSBJPNWECLZMZWTGMXJZNOMYCGXWPYXUMOHDOSDQNVZWLKJKBOTBTOOHIHKQZBWWBGYRRQHMGQNPKCINJIHMPETJPDGRFKCNRZGXIPJCSBMEXLRFHPOGEEQNZHVOHYZTRRHFIPXJWRHHOOWYJGZPMBFNIHVYYIZDKBEZXQCTKHQXQJZHZIDWMMIKXQHYHJGVPYGXEBCTYFRBCRQXGYVGFEZEOZSXICSWGFMZYWXXEEQTVNNEQUONTFTKWCOFFWUGMLCBQBKEXWCMHLOSFSVHZYBJVREZEMILTWHGJWUTPFFFFECBQRHWZXQINJFSXKRFHPOXXYNNZGWOGQNIZDNPJOGMQCCDGCXRYCLNTDHYFRERKJUSPQQZXGZFCYKCMMWHOFGTLHSKMQELWZXVVZUZDGFHQHZFHWQQUMSTJOYBFOEXPXRZWLCCSGYRMXDJKSJWTKRHEYWIBPWYWLKETSPIJBVEVEBOOKIMZWZFXFJKOSISOFJGUKQQXUKXNUCZVYSMBWBKGLDITEIMIJJTQXWLUUPERPMQCTZBYJERBZCNRPYPXQRLVNKXBGYNOVBEPZYLFPZCSSSETKWWGRUDVDHEHBFJRSSSVZXTBBQFMSJOWHJJRUTZOCQFRZJCDDHWSGXENZEDGQYVBEHNTITGRNRPYEYRWNPBFPQVOHPHGQRUESOPPSVMKPSUFOJGPLGCNVPMYTQPLXFLNNUDRDSRUXOEOCULBXHBVDBXISIJHZZFXEGXZDOKSSYDLCY<br />
+        [I, III, II] 1197</p>
+    <h4>231</h4>
+    <p>CEGZSLDZVLGYMZYTLCQWPCSLJKWOXSIUOGXHDKSMCBGRGGGGEXWQMTLHTZHXUFCDYJSGPYZXEWCHPUHFGEZKWOPPGWUQPLHDOWKSMNHNDKYNSQLGDEQZMPWNGCUFPJQLFHTXXKKEGTQIZLTBUYNJVUJVNKEMBEELPUPYBUOIMVEEJHGMBOGEVSOBRBEFSHKNNJHYZVTBMPLNZIGGRRSYYSOVQQLPBBCCWSBUFQNUQBNCJLCILCDHDUIJWUQYQNIZCWCXWTGYPWYIVYHIPJBHBYKBBCCBTWPSGWXQNNPTTQZSTQUGSXSTDVHJXNPRXDZTTIJGFSDBNCRCSBDXKQDEXESZYEQYCBBQBVFXWUPUMLNGHSQJMZESMJSDQXFMKHQYRXTHITWURBKPQJYHDCEONKDRITJGRGRDVTLCULFPJCTPXTKTIGCBMDFSOKCWPTYTGESMCQTEUPFNXDFZIYQEHGKJUWTSMEXZUIQCKDIFMQBGMBQXYBKMGGNURCXTUKGOILJXFGKDOBMOFRIFOJSUTXONYJURRSTNCHBUEFHWKXKPQJPPJGPZOITKQBMUQKDGYDBVUFOJZKHIWOXCFTLMQVTFMKQILJDBMTIOWSDMETDJRWMLQQZBDIVXFWKKIRVGPVNLYJJKMUQZWOFYKVQKLRDHJBWUBUODOXBQCJIFMNNLNJREGUTWVKDZRLUKZRXUVNIQLHDZOSVLWZTBMPGDWOKOCLSHJJFPQQBEQMKCIFEUUQEUWBTCOKECKHHBNLHBJBTLMYLVNXIQVQULZPWMYRVFOZPFETJXKXSIJFIHBFMYZBLJCGJUDRMNCSRLUYOZHUKTXNVQQOKOCSVHRKQUSSDNTWWPVURXZJXRVGOODXDCEICKRQLCMHXDGPDUYQCKUBYHXDKHNJNUTWHCYLHHXXJVMTSGLGPPCGTEYSOUTYTKWWOJVCSBGOCWDXCLXCRIORBWQONMPKWEWEPVESOMTXZIGBMLQXZFDCCDFTGDTBMQZQYWYYNHSJUNCLWTSKLXIHJEZFOOWXXUIQFFIMMDGXZMLPGGJFDHETOWNSPNTWUKBTJDVDKKKDYBVOZFZCUJNHBPDJOLPMBLXTLIQBHQVPBBBJNMZJMNTLHSIYLHDBJWOLJXLRTOKEVNNTQMXSSBHOXDBSZUMLKNSNDHGXNPUNCVHJIQZLMOSYDHFEWVRUPMGCRNCCRCWXXHWQXLQEQSISMNNNWMNZMIDKGJYCICYKOWHVRNVJGDLUFYREMEGEJFNUIXFHJMCLUTECFXRJPEBQHZZICCHYRLSZBRVMEMVLURXXFPLTOUJSKQIJIVSHDGCJLNEPJSBDPMQMWPHZZFWDUUQMHONGOZYJMYGPBPNQIEJHOSFOMWQSTKRKOUMDSHDRNHIPZRGSHGOEVEYTLMKDRQXQIECFXVREDCJNPUGGMCNEQQSLVOYOKKZIVBEPDCLJZVKPSUIXCXXMISVWMGPJYDGYKKLUMGEHSPGWYSQXRPURSCLIPKQLXZTVXKSPMYYWJONZINJVUSPOSLJHZZWUOREFUFEBFXFMYXPYHRTKITYFQNXDFPZDIQUSKLIDLCSMDRLNUIYISBGDIGLCLIUKZSBBPZBLMDQDJQMCNLIJOOXTTEVRFERGFFZSXULUBENGWMHLYLTSGMZDQVWOELXGZWU<br />
+        [II, III, 1] 1669</p>
+    <h4>213</h4>
+    <p>QDIPUTEHEHDNPEFMTJMSMRIBDTGTEMEOPLTTNESVEQVPRGLPGTZJFNTEBJQWSOBXXTNPSPCZQDFZOECPTCUSFPLMEEJXKBIHEDMHTXNQNGRPGIHDSMMTIRSPZSNDNJJQPEVGJDGSEJKSYOROFMDJXTNJRJXTNVEUHOMMQEQJNPILETIUTPQGWNUXBBFPCUYQMTDQMEXCYHOXMULSTCXKVWRLWQWQFRXFVENOVIJUZFICNBNRIFVKSRKHOSYMTRZCOFBLKJZBRZLYDBSSVNWXJUDKCOHQRCGQIDFLVSMWKQDCVTKVVJOBVPNKTZWKNPUKYSSPRYRJOBTPZSZNXYRVSVLVCMUFHQRQMCETYXWQMCXBZFBWNIKJHDJDIOJVDLTMZMRHUGBIUXEPDQYQMTCKYIRWHYTHLUIVSCFPSWJHBGEBLMGFTXMBPFELFFIDQYQJQMEQBNYFNRETZIDKPUNZDCBCFWPNEUTNDVEOUGDYOYGVIPOBPTMYCGNJRZGJMWGYYFRYCCURUUGXOBMYGOGMNJIDJYDWHOCEVIYPGQTBSXTXTHSMZGPGRGEWEWDUZMPQSPRBYHDPFBXVMEFEPENLKGZTNLZTWUJSTUTEPJXGLHKXISCYSVPVLVQLOQWKUQNEVDEVWIMUZSLCYCZIWIEKSNIMPOBJSIKKERBPPJERGOMLOQMTNYISVMPQNPZUZLRCZYSFQGENQNEPNCGJCMPQQLOBBRECEHXTXINEMZLDNSIXLHSGJIMEJPSIGLCZWMIDUUVWHNPIXLZXVLFEXSIKTTJOPSOQOSRRSRDBKJNNJUYPIMYESSVBODETWRFUNIQIVXBLQXJHIQVZOFGFTJMFDFPULFICENCWRCODIRYHXLQEZVIMOKDNLINTHDSHCEWCBDZKTQMCTIXFSDGXCBTFLRDNPPKNWNCHUKEWHWFHKRRBYCYYCYGPBDBRJHVWFOXCQZTSRKINUDPGUCLQRKZKVVGSMNHDLDVHNQQMXBFQXTNBETTZZJFXYQMQBCIOCUICSDHXMVXUYHGPTHMGQWIHJMWWXWUXHIPBSVCIKKBXOQMZWYVFRXTNUEBIXGPEROVZBEVUSRNELVFPKMCLQJKLIYLDWVCCRNHGGMVGKVOXEHEWJHWWHOVHKDTWVMFPURBFEGONLZHDYUKVMHSMJILDIPCNGCVHDCXTUKQKVQICFRUDBTVXMMKMOJVMOIJFETPLRNBZGFIUBOUFTNCNUSVDQJURKBMGXVMYQRLVISDDVGXQLLYDZWHSGCWOFINDFHCZNCQVJDZGTSQMSUITYHFLXYZRYHXZRBIRWHLSLMPVFSONQLLQZZSZSDNPRSVKZIZJOZPNLLGVVKEMQIKRCKPDIDJSCMSSDRXHBLSJZRBZODGULSVUCUZCBNQLUEVXOBXBNETKVVUOKGQOOUTJZCYPEPKYIUBKQTJIIWKQNHNBLPQXMSTWKESCFBDXJWCKDRYGPVNYORJSIUHZWQHZSNCKTKYDZUUGZNTHXVBXVJPPXNQDXTJUPSNQZKKSSRDBCJMNVCECJXHQNMRRGGPLNZLFJUXUTCUKPSPLLQTIJVEUVGPNBJGUZXNCPETQSNHTOSVQZQULQXEWMVUJWNUXFTJHNRRKDEGOTZMJOFIPDPSHDGDHXWFGWXLBLLSPXYYINTINFDTLK<br />
+        [II, I, III] 1669</p>
+
+    <p>QXZZHJZUTKBGTLDOXSRHTDWOBPCJJYZTWUBXYHTEPLXIKHKJIJNNEMHYYNBDEBONFNHCZKPKFQHMQBTQVKLVHVRQTOGUSWWGXXWLUUPRGCPUYJJITCBMBQGLBZRJFFMPQNPWDGRUQJLUXDJONXDBGPCNRHGCOBSCKXHYUFQJKPSVJWHLJOQKPGKFFOCECCNMRCMCMKQSYDIEVKEDSGJFCUTNXDFOQMQXUJGBCMEVYCMIEUWIHJSQUFIOSPDIJSXJRUPEECHTWJTQEVBNCGQHRRDLXGYCTWZYLODQEWFWCXWLFMSVWQYUWONTHZWZKNEREPPNZMFMCKOQJTECMTQKVEQNCWITGXXTMQSKYWDHFTWJFNVPGOBHWKHZEYHVTHMFNPZMBGRJRWJSKXEKONWRJGPFNBUZJFBUNJOZDMBJFEUQUOHNDDUTYDRMUHCXYXVMHGSBLBZFSPGXBOVTPCPEDQQMHJHMLLBMJUSNETUVTLUKPHLOBSCDCCXOVUOXMJQHYCIZTKCYMPRVODCVHDUKXTMEWLYCHMFRUSYIUXXFBLHNIKSSHDVLPGSXDMZITRUKFQHJROMTDOSZDNFEODRYPOCPKFXBOGTEXKPSCUGORNSDDBNXCXMQLVTRREPJGYQWCCSIWKZRWRRXXRHQDJVULJSOYODZBGTCRINPOBDGVFODONYMRBCNZIUOVENJXHERHLHNDNUFIFXTYCUKJVTQFVLBLFVYDGOXFSFMZNCGPHXKYTHDYUTVRKCZJCEBFNXTGLQHILIFFGYNVQROCNICSUOQRBOPQKIRIBNGXEOBVLHIROUFQOIPXBHELITKQXFQBFNUGPYGYYLJSZBSGMBGNYSKJLDSZFHBEJIXVHOOFMDRETXGRTFTFMLQCUGCPHDBBLUDQXGBIXWOHIBTQEDSFPFRFPGBKWIJVIYKNFYRNHELGLGULZMTJXUTXWHHNNTRGKZLFFOFGGLNTUJCUDGGFEHHVWCIYRPPGBGTTIMTTFUHNIRINKPZTWEEHQNCPGQUWPPVEHGOTUZIGBTWOBMNWOIEGUXUBLONFJURXPWOCHOBEJRUVVKLKREHVXWQGJCXOPSCUOCSKOIEOPVMOQOBFJORJPMXMQQKEJGEGWGUSXTRUJSNNQNRJYEYOBKVXZFPHCOFPSKUILJNSNDBGXUWUTUFIIRNMTTROLBRNRMGJEVNPRLNUBSRPXPHMKZICWHBMJLTHVFMFQCDJCBQHCBQGKQIDCIFMURDECHWDXQQFPFQCFNSRMOVYRPCYLLKZCXFODINLSVSCCZIBYSQDQIBERHDRGSYEWGNBQZXJVSWCOMDRCSZWRGXVOXTKLFNVQHNCKNVHYOJMNKEXUQWNMRXTSNZSRGDSGDIKODGLCMZEJNJRUUOFMDDVVRXRQCTLUYDJOTSMVEUSGQDKFEGUPYFCIZYOBYLCZZVILUGMTLDYTFVYIQKVYYIQLGEBHDSVWUTFIPJDXKPWKETHJLVLXDRCRYHWGPQZIWKOZSUHHCBSNTONXRHSIQFHKLGFEBCQFIMVMPBHIWVEIPGSZBWHBBYYBPOPYFQKSLXDKHLUNWGPDPKJVHCBUNJYWGFNMKNWYXTTDETVQNIFFUIXRBXBIUOWQJVIJRNHYUQQHCUFHJCGPZYWTIIFRBHPSNMQLKXOIYLWEZOK<br />
+        [II, IV, III]</p>
+
+    <p>YZWRPWVXTMKIXTVGPSRDBBFFMUQGJBZDWGLVIVJGPJGCICKYYGRYJYXVDCFPFDQVYPKDIZZTYMQRLIJIDGEZMXJSNJNYIGPWHMLXZSDURVFYGOSULXXHJFZRXQQHNPPISZWMCTYWQXLEXLJXNGPUFEFVTWQUZXICOYBONERLUFHUHDVNHVPMRXYXYBZLWTOIFPHFPTNWHLKDPIYKCEFOPHXJWMJIEOLJDPQDBRRWLYWGTVERLFDZNJPCWHYUVILKVBTWZLIFXHXWGDGXMSLBSUXWSMDXLQTIIKBXURWVPDKGRUCZVNQXYHNXKYDGZCWYGKUCSRPKJPNGKOJKBDTJTKIYJBLTTDJQGQMGCSGFMHOJDNPHDKHGFWQWQPSCGVKXYQQTPBFZWEFJNMKVBFDGTBETJQORYXFQXYBMDCNXFVTSVGTGPGVJYJYPKUXYPFTZTHWTGQKQQQTHMWEWMZUJKNRXCOVCCKKQEDVRQZFEIPXZBZBJDGVTQRWPPSVENFCCOOVXIFKFIKXCOHXVNCRDRILRWOFEHYBHXZYWMFUILEDBECILWKFPFEMYWOMDQQTJNNQIPOMTXTNCBKTMZQFIHBPPVCMYLVDJLRPHWCWUBMRQOBUBZUIXXUDDJEVZOBYHZJGFHJNSTWYXELJFMOJNIQNNIJHFVKUBHSMYQROVHTSGLWOZJEZCGVQFTQIKUBWZWXMXJWGJYXKFGDSJFERFPJLIKUENERMFHUNZNIIHYLDFLEBITWOBUFYNJIWXXHQIGUBKENFFBQQXPMVDQHXRREPLFQLNCNUVDVMYUHLXKXBORGXXYHBWXUGEVNQPKJUXMMNXBEYRHYPZBIBDCLPFQDBIEICSUNMLDZVJYQEYYTLPSMRCZJWKRUTRXJLMDRBKHSWZETFESEDTROFHBFWHXHWGFQLWLBTZMZXJKXYQBDDGTXTNWHDQSRQOUQNGEWJVSPTTCKLVLYDGLCLJWKJYBZWOCRMDQDGYYXMYWHDDNNILJPDKFOHHQNDTTFBZCGRLQCRPMKGBYPQDQIXDCOSSPPTMYRZISIQYETDGBRBQKMVHBDQXMMQXEHNLIFETDUDBWOKFIMBFGBNYPTUYMRTQJHNBNOJIHJXNRQZYWKUFFDEKPIOUFEKZLHYVUFIYTTOGHPCOFECBGLOYEWIXIQHKUUJSVTPIKEHIVUNFWNUUBKHXNEOFUCMVIWFVNLINWVUIMKWOYHJZWMTGKBNBRFXTJJMQJSEWFDSYVQCVHYHXQDLKKFSGPPBUTMPQPUKITDRFVZLNKUJFVVLNXOVEPYCGGRKNWNZRPTPGYFDQCKZSXDPQHJCNVDMCHZKJHLQXSNLOUJRVTPPHBUMWPWOZTMIIWQCHLNRDBYMYTWZGKZOGQWPOVXOFNVSRVSHGPDHGYPLCTWCDSCYBMCMPZXYLEWVJFEVWQOPMBTNIRIKIHHNCDBBZBMTWKEXYXBIQIQXUCSOLRIERSBDUCNECHQCTRCZOUYREXNQEUJIYIPXHSPNIDYQKFEWEUKNIODVVYILKNVLXYCYIVUIWKQIYVJXVDHFZZRQYRZWVOWBTPILOUIHUNDBNHBBMHXYEYURJMMZSBZNLIXETKFCNWOGCSVBIBMJWLRIXJLGRSQQMQFWOSZWHCTSEIJOZWVEOOJDUXRPIRLEYJLIVT<br />
+        [II, V, III]</p> -->
+</body>
+
+</html>
