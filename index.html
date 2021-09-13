@@ -107,6 +107,12 @@
             list-style-type: circle;
         }
 
+        .buttonName {
+            background-color: #eed;
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+
         @media(min-width: 900px) {
 
             h1,
@@ -161,9 +167,11 @@
 
         <ul>
             <li>Reload</li>
-            <li>Wprowadzenie ustawień i [Einstellen]</li>
-            <li>Wprowadzenie tekstu do zaszyfrowania i [Verschlüsseln]</li>
+            <li>Wprowadzenie ustawień i <span class="buttonName">[Einstellen]</span></li>
+            <li>Wprowadzenie tekstu do zaszyfrowania i <span class="buttonName">[Verschlüsseln]</span></li>
         </ul>
+
+        <p>Bardziej szczegółowo:</p>
 
         <p>Ustawienia można wprowadzać wybiórczo, np. tylko kolejność walców, lub tylko łącznica kablowa, lub tylko
             łącznica kablowa i ustawienia początkowe walców..., a w reszcie zdać się na ustawienia domyślne.</p>
@@ -171,20 +179,29 @@
         <p>Jeżeli nie wprowadzisz własnych zostaną zastosowane domyślne: walce [I, II, III]; ustawienia początkowe
             walców: A, A, A; łącznica kablowa: brak połączeń</p>
 
-        <p>Jeżeli wprowadziłeś ustawienia kliknij [Einstellen] - twoje ustawienia zobaczysz na panelu ustawień
+        <p>Jeżeli wprowadziłeś ustawienia kliknij <span class="buttonName">[Einstellen]</span> - twoje ustawienia
+            zobaczysz na panelu ustawień
             Einstellungen, będzie tam informacja, że zostały zmienione. Sprawdź czy są zgodne z zaplanowanym kluczem,
-            jeśli nie wprowadź je jeszcze raz i jeszcze raz kliknij [Einstellen].</p>
+            jeśli nie wprowadź je jeszcze raz i jeszcze raz kliknij <span class="buttonName">[Einstellen]</span>.</p>
 
         <p>Wtedy możesz zaszyfrować / odszyfrować tekst wg wprowadzonych ustawień. Zapisz ustawienia i prześlij je
             odbiorcy oddzielnym kanałem.</p>
 
-        <p>Tekst przeznaczony do zaszyfrowania / odszyfrowania umieść w formularzu i kliknij [Verschlüsseln]. Praca
+        <p>Tekst przeznaczony do zaszyfrowania / odszyfrowania umieść w formularzu i kliknij <span
+                class="buttonName">[Verschlüsseln]</span>. Praca
             Enigmy jest odwracalna, tzn. szyfrogram zaszyfrowany z tymi samymi ustawieniami daje tekst jawny. Jeżeli
             wyślesz odbiorcy szyfrogram to mając informację o kluczu otrzyma tekst jawny.</p>
 
         <h3>Testowanie</h3>
 
-        <p>Do testów proponuję użyć symulatora <a href="https://cryptii.com/pipes/enigma-machine">The Enigma machine:
+        <p>Najprostszą formą testu jest wrzucenie długiego ciągu takich samych znaków. Enigma nigdy nie oddaje tego
+            samego znaku po zaszyfrowaniu. Jeżeli pokazuje się choć raz w szyfrogramie jest to błąd.</p>
+
+        <p>Trochę bardziej zaawansowana formą testu jest zaszyfrowanie dowolnego tekstu, zapisanie go i po reloadzie
+            zaszyfrowanie go z tymi samymi ustawieniami jeszcze raz, rezultat powinien być identyczny - oczywiście bez
+            spacji i samymi dużymi literami, ale treść musi być taka sama.</p>
+
+        <p>Można też użyć symulatora <a href="https://cryptii.com/pipes/enigma-machine">The Enigma machine:
                 Encrypt and decrypt online — Cryptii</a> po lewej tekst jawny, pośrodku ustawienia, szyfrogram po
             prawej.</p>
 
@@ -192,8 +209,8 @@
             <li>Jako maszynę (MODEL) wybieramy - oczywiście - Enigmę I.</li>
             <li>REFLECTOR to walec odbijający.</li>
             <li>Pamiętaj, że ma odwrotne oznaczenie rotorów: ten który u mnie jest pierwszy, albo pierwszy z prawej
-                w Cryptii jest oznaczony jako ROTOR 3 i jest na dole. Tak samo ich ROTOR 1, pierwszy od góry to u mnie
-                trzeci, albo pierwszy z lewej.</li>
+                (Erste Rotor) w Cryptii jest oznaczony jako ROTOR 3 i jest na dole. Tak samo ich ROTOR 1, pierwszy od
+                góry to u mnie trzeci, albo trzeci od prawej (Dritte Rotor).</li>
             <li>Pozycja startowa walców w Cryptii oznaczona jest jako POSITION i tu kierujemy się literami alfabetu.
             </li>
             <li>Trzeci element formularza (RING) odnosi się do ustawienia pierścienia alfabetycznego na walcu i z tego
@@ -210,14 +227,16 @@
             wklejamy szyfrogram i w rezultacie powinniśmy otrzymać tekst jawny czyli wspomniany ciąg jednakowych liter.
         </p>
 
-        <p>Jeżeli rezultat się różni sprawdź jeszcze raz: typowe błędy to pomyłka przy wprowadzaniu ustawień, lub
-            skopiowanie szyfrogramu bez początkowych znaków. Jeżeli rezultat nadal się różni - zapisz ustawienia i daj
-            mi znać, przez facebooka <a href="https://www.facebook.com/dygresje.info">Dygresje.info</a> lub <a
+        <p>Jeżeli rezultat się różni sprawdź jeszcze raz: typowe błędy to pomyłka przy wprowadzaniu ustawień, brak
+            reloadu (odświeżenia ekranu) lub skopiowanie szyfrogramu bez początkowych znaków. Jeżeli rezultat nadal się
+            różni - zapisz ustawienia i daj mi znać, przez facebooka <a
+                href="https://www.facebook.com/dygresje.info">Dygresje.info</a> lub <a
                 href="https://dygresje.info/kontakt">formularz kontaktowy na stronie</a>.</p>
 
         <p>Do obserwacji wewnętrznej operacji maszyny polecam <a
                 href="https://summersidemakerspace.ca/projects/enigma-machine/">Universal Enigma Machine Simulator</a> -
-            po wprowadzeniu ustawień możemy obserwować szyfrowanie pojedynczych znaków klikając [Cipher One Letter]
+            po wprowadzeniu ustawień możemy obserwować szyfrowanie pojedynczych znaków klikając <span
+                class="buttonName">[Cipher One Letter]</span>
             litera po literze.</p>
 
         <h3>Dozwolone znaki</h3>
@@ -260,7 +279,7 @@
 
         <p>Pamiętaj, że wróg podsłuchuje!</p>
 
-        <h3>TODO</h3>
+        <h3>TODO aka FAQ</h3>
 
         <p>Ta wersja jest alfatestem, tzn. działa, ale to wszystko na tę chwilę. UX nie istnieje, więc pierwszą rzeczą
             do zrobienia będzie usunięcie potrzeby reloadu (do zerowania ustawień) i rozdzielenia wprowadzenia ustawień
@@ -268,6 +287,22 @@
 
         <p>Symulator ten jest częścią większego projektu (podlinkowany poniżej Das ist Enigma) i będzie rozwijany w jego
             ramach. Zapraszam do śledzenia. Docelowo będzie to dynamiczny interfejs, a potem komponent Reacta.</p>
+
+        <p>Dlaczego tylko Enigma I? Przede wszystkim nie "tylko" - Enigma I to główna maszyna szyfrująca armii
+            niemieckiej przez cały czas istnienia Wehrmachtu aż do końca wojny. Równolegle używano dwóch maszyn:</p>
+
+        <ul>
+            <li>Enigma Kriegsmarine: czyli wersje od M1 do M3 analogicznej konstrukcji, tu różnica były tylko typy i
+                liczba typów walców, silnik był ten sam, oraz Enigma M4 używana od lutego 1942, z dodatkowym, czwartym,
+                nieruchomym walcem szyfrującym.</li>
+            <li>Lorenz - wprowadzona w 1943 zupełnie inna maszyna, przeznaczona do łączności na poziomie sztabów.</li>
+        </ul>
+
+        <p>I oczywiście Enigma Kriegsmarine jest jakimś tam celem i to w niedalekiej przyszłości, ale przede wszystkim
+            muszę ustabilizować kod i zmienić interfejs na dynamiczny, tak, żeby kiedy wybierasz Enigmę M4 opcje
+            ustawień dostosowywały się do tego wyboru.</p>
+
+        <p>A czy będzie Lorenz, Typex, SIGABA... etc? O bardzo bym chciał. Ale to daleka, daleka perspektywa.</p>
 
         <h3>Odnośniki</h3>
 
@@ -282,7 +317,10 @@
         <ul>
             <li><a href="https://dygresje.info/blog/enigma">Das ist Enigma</a> - seria wpisów o Enigmie</li>
             <li><a href="https://dygresje.info/it/kryptologia">Kryptologia</a> - dział o kryptologii</li>
-            <li><a href="https://github.com/tdudkowski/Enigma">tdudkowski / Enigma</a> - repo na Githubie</li>
+            <li><a href="https://github.com/tdudkowski/Enigma">tdudkowski / Enigma</a> - repo tego symulatora na
+                Githubie</li>
+            <li><a href="https://tdudkowski.github.io/Enigma/index-tastatur.html">tdudkowski.github.io: Enigma
+                    Tastatur</a> - klawiatura Enigmy</li>
         </ul>
 
         <p></p>
@@ -318,7 +356,7 @@
                             <option value="UKW_B">UKW B</option>
                             <option value="UKW_C">UKW C</option>
                         </select></label>
-                    <label for="thirdRotor">Dritter Rotor (langsam)<br />
+                    <label for="thirdRotor">Dritte Rotor (langsam)<br />
                         <select name="thirdRotor" id="thirdRotor">
                             <option value="I">I</option>
                             <option value="II">II</option>
@@ -327,7 +365,7 @@
                             <option value="V">V</option>
                         </select>
                     </label>
-                    <label for="secondRotor">Zweiter Rotor<br />
+                    <label for="secondRotor">Zweite Rotor<br />
                         <select name="secondRotor" id="secondRotor">
                             <option value="I">I</option>
                             <option value="II" selected="selected">II</option>
@@ -348,7 +386,7 @@
                 </section>
                 <h4>Buchstabeneinstellungen (Ustawienia&nbsp;walców)</h4>
                 <section class="setting-field">
-                    <label for="thirdRotorStart">Dritter Rotor (langsam)<br />
+                    <label for="thirdRotorStart">Dritte Rotor (langsam)<br />
                         <select name="thirdRotorStart" id="thirdRotorStart">
                             <option value="A">A</option>
                             <option value="B">B</option>
@@ -378,7 +416,7 @@
                             <option value="Z">Z</option>
                         </select>
                     </label>
-                    <label for="secondRotorStart">Zweiter Rotor<br />
+                    <label for="secondRotorStart">Zweite Rotor<br />
                         <select name="secondRotorStart" id="secondRotorStart">
                             <option value="A">A</option>
                             <option value="B">B</option>
@@ -460,7 +498,6 @@
         <div id="output">_</div>
     </div>
     <hr />
- 
 </body>
 
 </html>
