@@ -81,7 +81,7 @@ const moveRotors = (i) => {
 
 // MAKE ROTORS SEQUENCE & SUBSTITUTION LETTER THROUGH THEM
 const letCipher = (valItem, i) => {
-    console.log(i)
+    // console.log(i)
     moveRotors(i);
 
     // STECKERBRETT
@@ -127,6 +127,16 @@ const letCipher = (valItem, i) => {
 
         valItem = ETW[numberInOrder];
     }
+
+    // STECKERBRETT OUTRO
+    for (let i = 0; i < steckerbrettFinal.length; i++) {
+        if (steckerbrettFinal[i].includes(valItem)) {
+            const tempValue = valItem
+            if (valItem === steckerbrettFinal[i][0]) { valItem = steckerbrettFinal[i][1]; }
+            if (tempValue === steckerbrettFinal[i][1]) { valItem = steckerbrettFinal[i][0]; }
+        }
+    }
+
     return valItem;
 };
 
@@ -197,7 +207,6 @@ const setSteckerbrett = () => {
     steckerbrett.value = ""
 }
 
-// Łukasz Łągiewka
 // USER SETTINGS - SHOW THEM
 const showSetting = () => {
 
