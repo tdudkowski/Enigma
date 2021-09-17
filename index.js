@@ -75,6 +75,7 @@ const moveRotors = (i) => {
     if (x % shiftParam === DoppelSchrittFaktor) {
         rotorSequence[2].sequence = rotorSequence[2].sequence.slice(1) + rotorSequence[2].sequence.slice(0, 1);
         rotorSequence[2].shift++;
+        if (rotorSequence[2].shift === 27) { rotorSequence[2].shift = 1 }
     }
     x++;
 };
