@@ -39,6 +39,7 @@ const moveRotors = (i) => {
     if ((i + 1) % shiftParam === DoppelSchrittFaktor) {
         rotorSequence[2].sequence = rotorSequence[2].sequence.slice(1) + rotorSequence[2].sequence.slice(0, 1);
         rotorSequence[2].shift++;
+        if (rotorSequence[2].shift === 27) { rotorSequence[2].shift = 1 }
     }
 };
 // MAKE ROTORS SEQUENCE & SUBSTITUTION LETTER THROUGH THEM
@@ -91,8 +92,7 @@ const sendText = (inputValue) => {
     }
     output.innerText = resultValue;
     const counterValue = "Anzahl der Buchstabe: " + resultValue.length;
-    // counter.innerText = counterValue;
-    // if (resultValue === awaitedCipherText || resultValue === awaitedClearText) { counter.innerText = "GREAT SUCCESS - number of letters: " + resultValue.length }
+    counter.innerText = counterValue;
 };
 
 // VALIDATE INPUT STRING
