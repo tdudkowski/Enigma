@@ -281,7 +281,9 @@
 
         <h3>TODO aka FAQ</h3>
         
-        <p>Na tę chwilę jedyny znany mi błąd jest wynikiem używania ustawienia startowego walca drugiego (środkowego). Jeżeli jest w zakresie A-D, szyfr jest pozbawiony błędów.</p>
+        <p>Na tę chwilę jedyny znany mi błąd jest wynikiem używania ustawienia startowego (alfabetycznego) walca drugiego (środkowego). 
+            Jeżeli jest to litera oznaczona karbem to 9 na 650 znaków jest błędnych. Litery z karbem dla kolejnych walców to I Q, II E, 3 V, IV J, V Z. 
+        We wszystkich innych konfiguracjach powinno być OK.</p>
 
         <p>Ta wersja jest alfatestem, tzn. działa, ale to wszystko na tę chwilę. UX nie istnieje, więc pierwszą rzeczą
             do zrobienia będzie usunięcie potrzeby reloadu (do zerowania ustawień) i rozdzielenia wprowadzenia ustawień
@@ -327,7 +329,7 @@
 
         <p></p>
     </div>
-    <div class="section">
+     <div class="section">
         <h2>Dateneingabe</h2>
         <div class="settingsPanel">
             <h3>Einstellungen (Ustawienia)</h3>
@@ -341,12 +343,6 @@
                     <li>Łącznica kablowa: <span id="settings-steckerbrett">brak</span></li>
                 </ul>
             </div>
-
-            <p>Kolejne walce są umieszczone od prawej do lewej, w poniższym formularzu ustawienia wprowadzasz jak w
-                prawdziwej maszynie. Nie pomyl kolejności, pamiętaj, że pierwszy jest po prawej, a trzeci po lewej!</p>
-
-            <p>Przed każdym wprowadzeniem ustawień lub zaszyfrowaniem z ustawieniami domyślnymi - przeładuj stronę. To
-                wstępna wersja kodu i niestety ciągle zachowuje stan rotorów. Reload zeruje je.</p>
         </div>
         <div>
             <form id="formRotors" method="post">
