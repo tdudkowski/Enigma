@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enigma</title>
-    <script src="index.js" defer></script>
+    <title>Enigma Final</title>
+    <script src="final2.js" defer></script>
     <style>
         body {
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
@@ -20,7 +20,7 @@
         }
 
         div.section {
-            border: 1px solid #999;
+            border: 1px solid #ddc;
             border-radius: 6px;
             padding: .5rem;
             margin: .5rem;
@@ -57,7 +57,7 @@
         }
 
         select {
-            width: 11rem;
+            width: 10rem;
             font-size: 1.2rem;
         }
 
@@ -75,7 +75,7 @@
         }
 
         .setting-field {
-            border: 1px solid #aa9;
+            border: 1px solid #ccb;
             border-radius: 4px;
             padding: .5rem;
             margin: .5rem;
@@ -136,12 +136,16 @@
         <h3>Beachte die Gebrauchsanleitung für die Chiffriermaschine</h3>
 
         <p>Rekonstrukcja niemieckiej maszyny szyfrującej Enigma I (podstawowa maszyna szyfrująca armii niemieckiej w
-            latach 1930-45). Rekonstrukcja składa się z trzech części:</p>
+            latach 1930-45). Jest to część obszerniejszego projektu <a href="">Das ist Enigma</a>, który łączy aspekty
+            historyczne i programistyczne kryptologii wojennej pierwszej połowy XX wieku.</p>
+
+        <p>Rekonstrukcja składa się z trzech części:</p>
 
         <ul>
-            <li>Instrukcji (niem. Zur Beachtung!), którą teraz czytasz</li>
-            <li>Wejścia danych (niem. Dateneingabe) z panelem ustawień - pośrodku</li>
-            <li>Wyjścia danych (niem. Datenausgabe) - na dole strony</li>
+            <li>Podstawowej instrukcji (niem. Zur Beachtung!), którą teraz czytasz.</li>
+            <li>Wejścia danych (niem. Dateneingabe) z panelem ustawień.</li>
+            <li>Wyjścia danych (niem. Datenausgabe).</li>
+            <li>Reszty informacji, całkiem na końcu, gdzie nikt nie zajrzy.</li>
         </ul>
 
         <h3>Ustawienia (niem. Einstellungen)</h3>
@@ -166,170 +170,22 @@
         <p>Instrukcja używania w skrócie:</p>
 
         <ul>
-            <li>Reload</li>
-            <li>Wprowadzenie ustawień i <span class="buttonName">[Einstellen]</span></li>
-            <li>Wprowadzenie tekstu do zaszyfrowania i <span class="buttonName">[Verschlüsseln]</span></li>
-        </ul>
-
-        <p>Bardziej szczegółowo:</p>
-
-        <p>Ustawienia można wprowadzać wybiórczo, np. tylko kolejność walców, lub tylko łącznica kablowa, lub tylko
-            łącznica kablowa i ustawienia początkowe walców..., a w reszcie zdać się na ustawienia domyślne.</p>
-
-        <p>Jeżeli nie wprowadzisz własnych zostaną zastosowane domyślne: walce [I, II, III]; ustawienia początkowe
-            walców: A, A, A; łącznica kablowa: brak połączeń</p>
-
-        <p>Jeżeli wprowadziłeś ustawienia kliknij <span class="buttonName">[Einstellen]</span> - twoje ustawienia
-            zobaczysz na panelu ustawień
-            Einstellungen, będzie tam informacja, że zostały zmienione. Sprawdź czy są zgodne z zaplanowanym kluczem,
-            jeśli nie wprowadź je jeszcze raz i jeszcze raz kliknij <span class="buttonName">[Einstellen]</span>.</p>
-
-        <p>Wtedy możesz zaszyfrować / odszyfrować tekst wg wprowadzonych ustawień. Zapisz ustawienia i prześlij je
-            odbiorcy oddzielnym kanałem.</p>
-
-        <p>Tekst przeznaczony do zaszyfrowania / odszyfrowania umieść w formularzu i kliknij <span
-                class="buttonName">[Verschlüsseln]</span>. Praca
-            Enigmy jest odwracalna, tzn. szyfrogram zaszyfrowany z tymi samymi ustawieniami daje tekst jawny. Jeżeli
-            wyślesz odbiorcy szyfrogram to mając informację o kluczu otrzyma tekst jawny.</p>
-
-        <h3>Testowanie</h3>
-
-        <p>Najprostszą formą testu jest wrzucenie długiego ciągu takich samych znaków. Enigma nigdy nie oddaje tego
-            samego znaku po zaszyfrowaniu. Jeżeli pokazuje się choć raz w szyfrogramie jest to błąd.</p>
-
-        <p>Trochę bardziej zaawansowana formą testu jest zaszyfrowanie dowolnego tekstu, zapisanie go i po reloadzie
-            zaszyfrowanie go z tymi samymi ustawieniami jeszcze raz, rezultat powinien być identyczny - oczywiście bez
-            spacji i samymi dużymi literami, ale treść musi być taka sama.</p>
-
-        <p>Można też użyć symulatora <a href="https://cryptii.com/pipes/enigma-machine">The Enigma machine:
-                Encrypt and decrypt online — Cryptii</a> po lewej tekst jawny, pośrodku ustawienia, szyfrogram po
-            prawej.</p>
-
-        <ul>
-            <li>Jako maszynę (MODEL) wybieramy - oczywiście - Enigmę I.</li>
-            <li>REFLECTOR to walec odbijający.</li>
-            <li>Pamiętaj, że ma odwrotne oznaczenie rotorów: ten który u mnie jest pierwszy, albo pierwszy z prawej
-                (Erste Rotor) w Cryptii jest oznaczony jako ROTOR 3 i jest na dole. Tak samo ich ROTOR 1, pierwszy od
-                góry to u mnie trzeci, albo trzeci od prawej (Dritte Rotor).</li>
-            <li>Pozycja startowa walców w Cryptii oznaczona jest jako POSITION i tu kierujemy się literami alfabetu.
+            <li>Odświeżenie strony.</li>
+            <li>Wprowadzenie ustawień i tekstu do zaszyfrowania / odszyfrowania i klik <span
+                    class="buttonName">[Verschlüsseln]</span>
             </li>
-            <li>Trzeci element formularza (RING) odnosi się do ustawienia pierścienia alfabetycznego na walcu i z tego
-                co wiem nie jest częścią szyfrowania Enigmy: tu zostawiamy AAA.</li>
-            <li>Na dole formularza jest pole tekstowe PLUGBOARD - to łącznica kablowa i tu parami wpisujemy połączenia
-                liter.</li>
-            <li>Ostatni element FOREIGN CHARS można zignorować.</li>
         </ul>
+
+        <p>Jeżeli nie wprowadzisz ustawień, zostaną zastosowane domyślne. Dostępny zakres znaków to 26 liter z
+            klawiatury Enigmy (zgodne z US-ASCII). Cyfry zostają zamienione na odpowiadające im litery wg wzoru podanego
+            na końcu. Odszyfrowanie polega na zaszyfrowaniu szyfrogramu z tymi samymi ustawieniami - praca Enigmy jest
+            odwracalna.</p>
 
         <p>W kryptografii używamy DUŻYCH LITER. Rezultat szyfrowania to zawsze ciąg DUŻYCH LITER.</p>
 
-        <p>Testowanie polega na umieszczeniu długiego (ok tysiąca znaków wystarczy) ciągu tych samych liter po lewej,
-            wprowadzeniu ustawień i skopiowaniu szyfrogramu. Teraz wprowadzamy te same ustawienia w tym symulatorze,
-            wklejamy szyfrogram i w rezultacie powinniśmy otrzymać tekst jawny czyli wspomniany ciąg jednakowych liter.
-        </p>
-
-        <p>Jeżeli rezultat się różni sprawdź jeszcze raz: typowe błędy to pomyłka przy wprowadzaniu ustawień, brak
-            reloadu (odświeżenia ekranu) lub skopiowanie szyfrogramu bez początkowych znaków. Jeżeli rezultat nadal się
-            różni - zapisz ustawienia i daj mi znać, przez facebooka <a
-                href="https://www.facebook.com/dygresje.info">Dygresje.info</a> lub <a
-                href="https://dygresje.info/kontakt">formularz kontaktowy na stronie</a>.</p>
-
-        <p>Do obserwacji wewnętrznej operacji maszyny polecam <a
-                href="https://summersidemakerspace.ca/projects/enigma-machine/">Universal Enigma Machine Simulator</a> -
-            po wprowadzeniu ustawień możemy obserwować szyfrowanie pojedynczych znaków klikając <span
-                class="buttonName">[Cipher One Letter]</span>
-            litera po literze.</p>
-
-        <h3>Dozwolone znaki</h3>
-
-        <ul>
-            <li>Enigma I jest ograniczona do 26-literowego alfabetu zgodnego ze standardem ASCII.</li>
-            <li>Ponieważ ten symulator przeznaczony jest dla polskiego użytkownika, dodałem translację polskich znaków
-                diakrytycznych na standard ASCII.</li>
-            <li>Również cyfry są przekładane na odpowiadające im litery. Przy odszyfrowaniu nie da się automatycznie
-                określić, który znak to cyfra. Jest to zadanie operatora, oto lista odpowiedników:
-                <table>
-                    <tr>
-                        <td>0</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
-                    </tr>
-                    <tr>
-                        <td>Q</td>
-                        <td>W</td>
-                        <td>E</td>
-                        <td>R</td>
-                        <td>T</td>
-                        <td>Z</td>
-                        <td>U</td>
-                        <td>I</td>
-                        <td>O</td>
-                        <td>P</td>
-                    </tr>
-                </table>
-            </li>
-            <li>Wszystkie inne znaki, w tym spacje i znaki przestankowe są usuwane.</li>
-        </ul>
-
-        <p>Pamiętaj, że wróg podsłuchuje!</p>
-
-        <h3>TODO aka FAQ</h3>
-        
-        <p>Na tę chwilę jedyny znany mi błąd jest wynikiem używania ustawienia startowego (alfabetycznego) walca drugiego (środkowego). 
-            Jeżeli jest to litera oznaczona karbem to 9 na 650 znaków jest błędnych. Litery z karbem dla kolejnych walców to I Q, II E, 3 V, IV J, V Z. 
-        We wszystkich innych konfiguracjach powinno być OK.</p>
-
-        <p>Ta wersja jest alfatestem, tzn. działa, ale to wszystko na tę chwilę. UX nie istnieje, więc pierwszą rzeczą
-            do zrobienia będzie usunięcie potrzeby reloadu (do zerowania ustawień) i rozdzielenia wprowadzenia ustawień
-            i szyfrowania. Kliknięcie w jeden przycisk szyfrowania powinno robić te wszystkie trzy rzeczy na raz.</p>
-
-        <p>Symulator ten jest częścią większego projektu (podlinkowany poniżej Das ist Enigma) i będzie rozwijany w jego
-            ramach. Zapraszam do śledzenia. Docelowo będzie to dynamiczny interfejs, a potem komponent Reacta.</p>
-
-        <p>Dlaczego tylko Enigma I? Przede wszystkim nie "tylko" - Enigma I to główna maszyna szyfrująca armii
-            niemieckiej przez cały czas istnienia Wehrmachtu aż do końca wojny. Równolegle używano dwóch maszyn:</p>
-
-        <ul>
-            <li>Enigma Kriegsmarine: czyli wersje od M1 do M3 analogicznej konstrukcji, tu różnica były tylko typy i
-                liczba typów walców, silnik był ten sam, oraz Enigma M4 używana od lutego 1942, z dodatkowym, czwartym,
-                nieruchomym walcem szyfrującym.</li>
-            <li>Lorenz - wprowadzona w 1943 zupełnie inna maszyna, przeznaczona do łączności na poziomie sztabów.</li>
-        </ul>
-
-        <p>I oczywiście Enigma Kriegsmarine jest jakimś tam celem i to w niedalekiej przyszłości, ale przede wszystkim
-            muszę ustabilizować kod i zmienić interfejs na dynamiczny, tak, żeby kiedy wybierasz Enigmę M4 opcje
-            ustawień dostosowywały się do tego wyboru.</p>
-
-        <p>A czy będzie Lorenz, Typex, SIGABA... etc? O bardzo bym chciał. Ale to daleka, daleka perspektywa.</p>
-
-        <h3>Odnośniki</h3>
-
-        <ul>
-            <li>Oryginalny tekst instrukcji: <a
-                    href="https://wolfgang-naeser-marburg.lima-city.de/htm/enigma.htm">Textsorte:
-                    Bedienungsanleitung</a></li>
-        </ul>
-
-        <p>Na mojej stronie:</p>
-
-        <ul>
-            <li><a href="https://dygresje.info/blog/enigma">Das ist Enigma</a> - seria wpisów o Enigmie</li>
-            <li><a href="https://dygresje.info/it/kryptologia">Kryptologia</a> - dział o kryptologii</li>
-            <li><a href="https://github.com/tdudkowski/Enigma">tdudkowski / Enigma</a> - repo tego symulatora na
-                Githubie</li>
-            <li><a href="https://tdudkowski.github.io/Enigma/index-tastatur.html">tdudkowski.github.io: Enigma
-                    Tastatur</a> - klawiatura Enigmy</li>
-        </ul>
-
-        <p></p>
+        <p><strong>Pamiętaj, że wróg podsłuchuje!</strong></p>
     </div>
-     <div class="section">
+    <div class="section">
         <h2>Dateneingabe</h2>
         <div class="settingsPanel">
             <h3>Einstellungen (Ustawienia)</h3>
@@ -479,13 +335,15 @@
                 <section class="setting-field">
                     <input id="steckerbrett">
                 </section>
-                <button id="buttonSettings">Einstellen</button>
+                <!-- <button id="buttonSettings">Einstellen</button>
             </form>
         </div>
         <div>
-            <form class="formInput">
-                <h3>Formular</h3>
-                <textarea id="input" cols="50" rows="10"></textarea><br />
+            <form class="formInput"> -->
+                <h3>Text</h3>
+                <section class="setting-field">
+                    <textarea id="input" cols="50" rows="10"></textarea>
+                </section>
                 <button id="button">Verschlüsseln</button>
             </form>
         </div>
@@ -495,7 +353,156 @@
         <div>Liczba znaków: <span id="counter">0</span></div>
         <div id="output">_</div>
     </div>
-    <hr />
+    <div class="section">
+
+        <h2>Dodatkowe informacje</h2>
+
+        <p>Bardziej szczegółowo:</p>
+
+        <p>Ustawienia można wprowadzać wybiórczo, np. tylko kolejność walców, lub tylko łącznica kablowa, lub tylko
+            łącznica kablowa i ustawienia początkowe walców..., a w reszcie zdać się na ustawienia domyślne.</p>
+
+        <p>Sprawdź czy ustawienia są zgodne z zaplanowanym kluczem, jeśli nie wprowadź je jeszcze raz.</p>
+
+        <p>Jeżeli nie wprowadzisz własnych zostaną zastosowane domyślne: walce [I, II, III]; ustawienia początkowe
+            walców: A, A, A; łącznica kablowa: brak połączeń</p>
+
+        <p>Zapisz ustawienia i prześlij je odbiorcy oddzielnym kanałem.</p>
+
+        <p>Tekst przeznaczony do zaszyfrowania / odszyfrowania umieść w formularzu i kliknij <span
+                class="buttonName">[Verschlüsseln]</span>. Praca Enigmy jest odwracalna, tzn. szyfrogram zaszyfrowany z
+            tymi samymi ustawieniami daje tekst jawny. Jeżeli wyślesz odbiorcy szyfrogram to mając informację o kluczu
+            otrzyma tekst jawny.</p>
+
+        <h3>Dozwolone znaki</h3>
+
+        <ul>
+            <li>Enigma I jest ograniczona do 26-literowego alfabetu zgodnego ze standardem US-ASCII.</li>
+            <li>Ponieważ ten symulator przeznaczony jest dla polskiego użytkownika, dodałem translację polskich znaków
+                diakrytycznych na US-ASCII.</li>
+            <li>Również cyfry są przekładane na odpowiadające im litery. Przy odszyfrowaniu nie da się automatycznie
+                określić, który znak to cyfra. Jest to zadanie operatora, oto lista odpowiedników:
+                <table>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>Q</td>
+                        <td>W</td>
+                        <td>E</td>
+                        <td>R</td>
+                        <td>T</td>
+                        <td>Z</td>
+                        <td>U</td>
+                        <td>I</td>
+                        <td>O</td>
+                        <td>P</td>
+                    </tr>
+                </table>
+            </li>
+            <li>Wszystkie inne znaki, w tym spacje i znaki przestankowe są usuwane.</li>
+        </ul>
+
+        <h3>Testowanie</h3>
+
+        <p>Na tę chwilę nie są mi znane żadne błędy.</p>
+
+        <p>Najprostszą formą testu jest wrzucenie długiego ciągu takich samych znaków. Enigma nigdy nie oddaje tego
+            samego znaku po zaszyfrowaniu. Jeżeli pokazuje się choć raz w szyfrogramie jest to błąd.</p>
+
+        <p>Trochę bardziej zaawansowana formą testu jest zaszyfrowanie dowolnego tekstu, zapisanie go i po reloadzie
+            zaszyfrowanie go z tymi samymi ustawieniami jeszcze raz, rezultat powinien być identyczny - oczywiście bez
+            spacji i samymi dużymi literami, ale treść musi być taka sama.</p>
+
+        <p>Można też użyć symulatora <a href="https://cryptii.com/pipes/enigma-machine">The Enigma machine:
+                Encrypt and decrypt online — Cryptii</a> po lewej tekst jawny, pośrodku ustawienia, szyfrogram po
+            prawej.</p>
+
+        <ul>
+            <li>Jako maszynę (MODEL) wybieramy - oczywiście - Enigmę I.</li>
+            <li>REFLECTOR to walec odbijający.</li>
+            <li>Pamiętaj, że ma odwrotne oznaczenie rotorów: ten który u mnie jest pierwszy, albo pierwszy z prawej
+                (Erste Rotor) w Cryptii jest oznaczony jako ROTOR 3 i jest na dole. Tak samo ich ROTOR 1, pierwszy od
+                góry to u mnie trzeci, albo trzeci od prawej (Dritte Rotor).</li>
+            <li>Pozycja startowa walców w Cryptii oznaczona jest jako POSITION i tu kierujemy się literami alfabetu.
+            </li>
+            <li>Trzeci element formularza (RING) odnosi się do ustawienia pierścienia alfabetycznego na walcu i z tego
+                co wiem nie jest częścią szyfrowania Enigmy: tu zostawiamy AAA.</li>
+            <li>Na dole formularza jest pole tekstowe PLUGBOARD - to łącznica kablowa i tu parami wpisujemy połączenia
+                liter.</li>
+            <li>Ostatni element FOREIGN CHARS można zignorować.</li>
+        </ul>
+
+        <p>Testowanie polega na umieszczeniu długiego (ok tysiąca znaków wystarczy) ciągu tych samych liter po lewej,
+            wprowadzeniu ustawień i skopiowaniu szyfrogramu. Teraz wprowadzamy te same ustawienia w tym symulatorze,
+            wklejamy szyfrogram i w rezultacie powinniśmy otrzymać tekst jawny czyli wspomniany ciąg jednakowych liter.
+        </p>
+
+        <p>Jeżeli rezultat się różni sprawdź jeszcze raz: typowe błędy to pomyłka przy wprowadzaniu ustawień, brak
+            reloadu (odświeżenia ekranu) lub skopiowanie szyfrogramu bez początkowych znaków. Jeżeli rezultat nadal się
+            różni - zapisz ustawienia i daj mi znać, przez facebooka <a
+                href="https://www.facebook.com/dygresje.info">Dygresje.info</a> lub <a
+                href="https://dygresje.info/kontakt">formularz kontaktowy na stronie</a>.</p>
+
+        <p>Do obserwacji wewnętrznej operacji maszyny polecam <a
+                href="https://summersidemakerspace.ca/projects/enigma-machine/">Universal Enigma Machine Simulator</a> -
+            po wprowadzeniu ustawień możemy obserwować szyfrowanie pojedynczych znaków klikając <span
+                class="buttonName">[Cipher One Letter]</span>
+            litera po literze.</p>
+
+        <h3>TODO aka FAQ</h3>
+
+        <p>Ta wersja jest betatestem, tzn. działa, ale to wszystko na tę chwilę. UX jest do poprawy.</p>
+
+        <p>Symulator ten jest częścią większego projektu (podlinkowany poniżej Das ist Enigma) i będzie rozwijany w jego
+            ramach. Zapraszam do śledzenia. Docelowo będzie to dynamiczny interfejs, a potem komponent Reacta.</p>
+
+        <p>Dlaczego tylko Enigma I? Przede wszystkim nie "tylko" - Enigma I to główna maszyna szyfrująca armii
+            niemieckiej przez cały czas istnienia Wehrmachtu aż do końca wojny. Równolegle używano dwóch innych maszyn:
+        </p>
+
+        <ul>
+            <li>Enigma Kriegsmarine: czyli wersje od M1 do M3 analogicznej konstrukcji, tu różnica były tylko typy i
+                liczba typów walców, silnik był ten sam, oraz Enigma M4 używana od lutego 1942, z dodatkowym, czwartym,
+                nieruchomym walcem szyfrującym.</li>
+            <li>Lorenz - wprowadzona w 1943 zupełnie inna maszyna, przeznaczona do łączności na poziomie sztabów.</li>
+        </ul>
+
+        <p>I oczywiście Enigma Kriegsmarine jest jakimś tam celem i to w niedalekiej przyszłości, ale przede wszystkim
+            muszę ustabilizować kod i zmienić interfejs na dynamiczny, tak, żeby kiedy wybierasz Enigmę M4 opcje
+            ustawień dostosowywały się do tego wyboru.</p>
+
+        <p>A czy będzie Lorenz, Typex, SIGABA... etc? O bardzo bym chciał. Ale to daleka, daleka perspektywa.</p>
+
+        <h3>Odnośniki</h3>
+
+        <ul>
+            <li>Oryginalny tekst instrukcji: <a
+                    href="https://wolfgang-naeser-marburg.lima-city.de/htm/enigma.htm">Textsorte:
+                    Bedienungsanleitung</a></li>
+        </ul>
+
+        <p>Na mojej stronie:</p>
+
+        <ul>
+            <li><a href="https://dygresje.info/blog/enigma">Das ist Enigma</a> - seria wpisów o Enigmie</li>
+            <li><a href="https://dygresje.info/it/kryptologia">Kryptologia</a> - dział o kryptologii</li>
+            <li><a href="https://github.com/tdudkowski/Enigma">tdudkowski / Enigma</a> - repo tego symulatora na
+                Githubie</li>
+            <li><a href="https://tdudkowski.github.io/Enigma/index-tastatur.html">tdudkowski.github.io: Enigma
+                    Tastatur</a> - klawiatura Enigmy</li>
+        </ul>
+
+    </div>
 </body>
 
 </html>
