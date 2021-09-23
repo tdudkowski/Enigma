@@ -26,13 +26,13 @@
             padding: 5px 0;
         }
 
-        div.alphabet p {
+        div.alphabet h3 {
             margin: 0;
             padding-left: 1rem;
             letter-spacing: .5rem;
         }
 
-        div.alphabet p:first-child {
+        div.alphabet h3 {
             background-color: darkred;
             color: #ddd;
             text-align: center;
