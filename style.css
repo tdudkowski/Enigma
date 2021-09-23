@@ -41,6 +41,11 @@
 
         }
 
+        div.alphabet p {
+           margin: 1rem;
+           letter-spacing: .5rem;
+        }
+
         div.keyboard {
             width: 30rem;
             display: flex;
