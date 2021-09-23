@@ -153,7 +153,7 @@
         <ul>
             <li>Jest to część obszerniejszego projektu <a href="https://dygresje.info/blog/enigma">Das ist Enigma</a>, który łączy aspekty
             historyczne i programistyczne kryptologii wojennej pierwszej połowy XX wieku.</li>
-            <li>Do nieawna pod tym adresem była rekonstrukcja interfejsu Enigmy - obecnie jest dostępna tu: <a href="https://tdudkowski.github.io/Enigma/index-tastatur.html">Enigma Tastatur</a></li>
+            <li>Do niedawna pod tym adresem była rekonstrukcja interfejsu Enigmy - obecnie jest dostępna tu: <a href="https://tdudkowski.github.io/Enigma/index-tastatur.html">Enigma Tastatur</a></li>
             <li>Repozytorium - <a href="https://github.com/tdudkowski/Enigma">github.com/tdudkowski/Enigma</a></li>
             <li>Na mojej stronie: <a href="https://dygresje.info/it/kryptologia">Kryptologia</a> - dział o kryptologii</li>
             
@@ -175,7 +175,7 @@
         <ul>
             <li><strong>kolejność walców:</strong> trzy sloty, masz pięć dostępnych typów walców, każdy tylko w jednym
                 egzemplarzu - wybierz dowolne trzy walce z pięciu dostępnych w menu rozwijanym, żaden z walców nie może
-                się powtarzać; jeśli będą się powtarzać wrócisz do ustawień domyślnych.</li>
+                się powtarzać; jeśli będą się powtarzać, wrócisz do ustawień domyślnych.</li>
             <li><strong>ustawienia początkowe walców:</strong> każdy z walców niezależnie można było ustawić w pozycji
                 startowej na dowolną z 26 liter - wybierz dowolne litery z menu rozwijanego.</li>
             <li><strong>łącznica kablowa:</strong> łączyła gniazda oznaczone literami, przewód z wtykami łączący np. A z
@@ -222,7 +222,7 @@
         </div>
         <div>
             <form id="formRotors" method="post">
-                <h4>Walzensatz (Zespoł walców)</h4>
+                <h4>Walzensatz (Zespół walców)</h4>
                 <section class="setting-field">
                     <label for="mirrorRotor">Umkehrwalze<br />
                         <select name="mirrorRotor" id="mirrorRotor">
@@ -382,16 +382,16 @@
         <p>Ustawienia można wprowadzać wybiórczo, np. tylko kolejność walców, lub tylko łącznica kablowa, lub tylko
             łącznica kablowa i ustawienia początkowe walców..., a w reszcie zdać się na ustawienia domyślne.</p>
 
-        <p>Sprawdź czy ustawienia są zgodne z zaplanowanym kluczem, jeśli nie wprowadź je jeszcze raz.</p>
+        <p>Sprawdź, czy ustawienia są zgodne z zaplanowanym kluczem, jeśli nie wprowadź je jeszcze raz.</p>
 
-        <p>Jeżeli nie wprowadzisz własnych zostaną zastosowane domyślne: walce [I, II, III]; ustawienia początkowe
+        <p>Jeżeli nie wprowadzisz własnych, zostaną zastosowane domyślne: walce [I, II, III]; ustawienia początkowe
             walców: A, A, A; łącznica kablowa: brak połączeń</p>
 
         <p>Zapisz ustawienia i prześlij je odbiorcy oddzielnym kanałem.</p>
 
         <p>Tekst przeznaczony do zaszyfrowania / odszyfrowania umieść w formularzu i kliknij <span
                 class="buttonName">[Verschlüsseln]</span>. Praca Enigmy jest odwracalna, tzn. szyfrogram zaszyfrowany z
-            tymi samymi ustawieniami daje tekst jawny. Jeżeli wyślesz odbiorcy szyfrogram to mając informację o kluczu
+            tymi samymi ustawieniami daje tekst jawny. Jeżeli wyślesz odbiorcy szyfrogram, to mając informację o kluczu
             otrzyma tekst jawny.</p>
 
         <h3>Dozwolone znaki</h3>
@@ -437,13 +437,13 @@
         <p>Na tę chwilę nie są mi znane żadne błędy.</p>
 
         <p>Najprostszą formą testu jest wrzucenie długiego ciągu takich samych znaków. Enigma nigdy nie oddaje tego
-            samego znaku po zaszyfrowaniu. Jeżeli pokazuje się choć raz w szyfrogramie jest to błąd.</p>
+            samego znaku po zaszyfrowaniu. Jeżeli pokazuje się choć raz w szyfrogramie, jest to błąd.</p>
 
-        <p>Trochę bardziej zaawansowana formą testu jest zaszyfrowanie dowolnego tekstu, zapisanie go i po reloadzie
+        <p>Trochę bardziej zaawansowaną formą testu jest zaszyfrowanie dowolnego tekstu, zapisanie go i po reloadzie
             zaszyfrowanie go z tymi samymi ustawieniami jeszcze raz, rezultat powinien być identyczny - oczywiście bez
             spacji i samymi dużymi literami, ale treść musi być taka sama.</p>
 
-        <p>Można też użyć symulatora <a href="https://cryptii.com/pipes/enigma-machine">The Enigma machine:
+        <p>Pewność poprawnego działania można uzyskać tylko porównując z pracą innego symulatora, np. <a href="https://cryptii.com/pipes/enigma-machine">The Enigma machine:
                 Encrypt and decrypt online — Cryptii</a> po lewej tekst jawny, pośrodku ustawienia, szyfrogram po
             prawej.</p>
 
@@ -456,7 +456,7 @@
             <li>Pozycja startowa walców w Cryptii oznaczona jest jako POSITION i tu kierujemy się literami alfabetu.
             </li>
             <li>Trzeci element formularza (RING) odnosi się do ustawienia pierścienia alfabetycznego na walcu i z tego
-                co wiem nie jest częścią szyfrowania Enigmy: tu zostawiamy AAA.</li>
+                co wiem, nie jest częścią szyfrowania Enigmy: tu zostawiamy AAA.</li>
             <li>Na dole formularza jest pole tekstowe PLUGBOARD - to łącznica kablowa i tu parami wpisujemy połączenia
                 liter.</li>
             <li>Ostatni element FOREIGN CHARS można zignorować.</li>
@@ -464,10 +464,10 @@
 
         <p>Testowanie polega na umieszczeniu długiego (ok tysiąca znaków wystarczy) ciągu tych samych liter po lewej,
             wprowadzeniu ustawień i skopiowaniu szyfrogramu. Teraz wprowadzamy te same ustawienia w tym symulatorze,
-            wklejamy szyfrogram i w rezultacie powinniśmy otrzymać tekst jawny czyli wspomniany ciąg jednakowych liter.
+            wklejamy szyfrogram i w rezultacie powinniśmy otrzymać tekst jawny, czyli wspomniany ciąg jednakowych liter.
         </p>
 
-        <p>Jeżeli rezultat się różni sprawdź jeszcze raz: typowe błędy to pomyłka przy wprowadzaniu ustawień, brak
+        <p>Jeżeli rezultat się różni, sprawdź jeszcze raz: typowe błędy to pomyłka przy wprowadzaniu ustawień, brak
             reloadu (odświeżenia ekranu) lub skopiowanie szyfrogramu bez początkowych znaków. Jeżeli rezultat nadal się
             różni - zapisz ustawienia i daj mi znać, przez facebooka <a
                 href="https://www.facebook.com/dygresje.info">Dygresje.info</a> lub <a
@@ -475,7 +475,7 @@
 
         <p>Do obserwacji wewnętrznej operacji maszyny polecam <a
                 href="https://summersidemakerspace.ca/projects/enigma-machine/">Universal Enigma Machine Simulator</a> -
-            po wprowadzeniu ustawień możemy obserwować szyfrowanie pojedynczych znaków klikając <span
+            po wprowadzeniu ustawień możemy obserwować szyfrowanie pojedynczych znaków, klikając <span
                 class="buttonName">[Cipher One Letter]</span>
             litera po literze.</p>
 
@@ -498,7 +498,7 @@
         </ul>
 
         <p>I oczywiście Enigma Kriegsmarine jest jakimś tam celem i to w niedalekiej przyszłości, ale przede wszystkim
-            muszę ustabilizować kod i zmienić interfejs na dynamiczny, tak, żeby kiedy wybierasz Enigmę M4 opcje
+            muszę ustabilizować kod i zmienić interfejs na dynamiczny, tak, żeby kiedy wybierzesz Enigmę M4, opcje
             ustawień dostosowywały się do tego wyboru.</p>
 
         <p>A czy będzie Lorenz, Typex, SIGABA... etc? O bardzo bym chciał. Ale to daleka, daleka perspektywa.</p>
